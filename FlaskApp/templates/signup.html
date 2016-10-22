@@ -15,13 +15,7 @@
  
     <div class="container">
       <div class="header">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="main">Home</a></li>
-            <li role="presentation"><a href="SignIn">Sign In</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Harvard Forum</h3>
+          <h3 class="text-muted"><a href="/" style="text-decoration:none">Harvard Forum</a></h3>
       </div>
  
       <div class="jumbotron">
@@ -36,7 +30,9 @@
           <label for="confirmPassword" class="sr-only">Password</label>
           <input type="password" name="inputPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
            
-          <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+          <a href="showLogIn" style><button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button"> <style="color: white">Sign up</button></a>
+
+          <p style="font-size:14px"> Already have an account? <a href="showLogIn">Log in here</a></p>
         </form>
       </div>
  
