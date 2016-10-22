@@ -6,6 +6,10 @@ app = Flask(__name__)
 def showSignUp():
     return render_template('signup.html')
 
+@app.route('/showSignIn')
+def showSignIn():
+	return render_template('login.html')
+
 @app.route("/")
 def main():
     return render_template('index.html')
