@@ -15,11 +15,11 @@
  
     <div class="container">
       <div class="header">
-          <h3 class="text-muted"><a href="/" style="text-decoration:none">Harvard Forum</a></h3>
+          <a href="/"><img src="../static/logo.png" alt="Askii" style="width:100px;height:50px;"></a>
       </div>
  
       <div class="jumbotron">
-        <h1>sign!</h1>
+        <h1>Sign Up</h1>
         <form class="form-signin" action="/signUp" method="POST">
           <label for="inputEmail" class="sr-only">Email address</label>
           <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -29,10 +29,8 @@
 
           <label for="confirmPassword" class="sr-only">Password</label>
           <input type="password" name="inputPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-           
-          <input type="submit" value="Submit">
-           
-          <!--<button id="btnLogIn" class="btn btn-lg btn-primary btn-block" type="button"><style="color: white">Sign up</button><name="inputEmail"> <name="inputPassword"><br>-->
+
+          <input type="submit" button id="btnLogIn" class="btn btn-lg btn-primary btn-block" type="button" value="Sign Up"><style="color: white"></button>
 
           <p style="font-size:14px"> Already have an account? <a href="showLogIn">Log in here</a></p>
         </form>
