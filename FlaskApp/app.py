@@ -12,8 +12,6 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-
-
 app = Flask(__name__)
 
 @app.route('/showSignUp')
@@ -41,10 +39,6 @@ def showHome():
 @app.route("/")
 def main():
     return render_template('index.html')
-
-#@app.route('/signUp')
-#def signUp():
-
 
 if __name__ == "__main__":
     app.run()
