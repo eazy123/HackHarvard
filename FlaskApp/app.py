@@ -1,5 +1,19 @@
+# -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+import pyrebase
+
+config = {
+	"apiKey": "AIzaSyBuvPj-HdPlCbXfUzrdpDka0-Q0gvmkD9U",
+	"authDomain": "hackharvard-7eb91.firebaseapp.com",
+	"databaseURL": "https://hackharvard-7eb91.firebaseio.com",
+	"storageBucket": "hackharvard-7eb91.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+auth = firebase.auth()
+auth.create_user_with_email_and_password('email@gmail.com', 'password')
+
 app = Flask(__name__)
 
 @app.route('/showSignUp')
@@ -13,6 +27,10 @@ def showSignIn():
 @app.route("/")
 def main():
     return render_template('index.html')
+
+#@app.route('/signUp')
+#def signUp():
+
 
 if __name__ == "__main__":
     app.run()
