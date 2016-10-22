@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pyrebase
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, abort, session
 
 config = {
 	"apiKey": "AIzaSyBuvPj-HdPlCbXfUzrdpDka0-Q0gvmkD9U",
@@ -12,14 +12,23 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-auth = firebase.auth()
-# auth.create_user_with_email_and_password('test@gmai.com', 'password')
+
 
 app = Flask(__name__)
 
 @app.route('/showSignUp')
 def showSignUp():
     return render_template('signup.html')
+
+@app.route('/signUp', methods=['POST'])
+def signUp():
+	email = request.form['inputEmail']
+	password = request.form['inputPassword']
+	print(email + password)
+	auth = firebase.auth()
+	auth.create_user_with_email_and_password(email, password)
+	return ('index.html')
+	
 
 @app.route('/showLogIn')
 def showSignIn():

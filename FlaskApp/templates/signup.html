@@ -8,7 +8,6 @@
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <link href="../static/signup.css" rel="stylesheet">
-    <script src="../static/js/app.js"></script>
     
   </head>
  
@@ -20,8 +19,8 @@
       </div>
  
       <div class="jumbotron">
-        <h1>SIGN UP!</h1>
-        <form class="form-signin">
+        <h1>sign!</h1>
+        <form class="form-signin" action="/signUp" method="POST">
           <label for="inputEmail" class="sr-only">Email address</label>
           <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
@@ -31,7 +30,9 @@
           <label for="confirmPassword" class="sr-only">Password</label>
           <input type="password" name="inputPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
            
-          <a href="showLogIn" style><button id="btnLogIn" class="btn btn-lg btn-primary btn-block" type="button"> <style="color: white">Sign up</button></a>
+          <input type="submit" value="Submit">
+           
+          <!--<button id="btnLogIn" class="btn btn-lg btn-primary btn-block" type="button"><style="color: white">Sign up</button><name="inputEmail"> <name="inputPassword"><br>-->
 
           <p style="font-size:14px"> Already have an account? <a href="showLogIn">Log in here</a></p>
         </form>
@@ -44,7 +45,5 @@
       </footer>
  
     </div>
-
-    <script src="../static/app.js"></script>
   </body>
 </html>
