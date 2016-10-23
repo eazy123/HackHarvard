@@ -2,6 +2,10 @@
 
 import pyrebase
 from flask import Flask, render_template, request, redirect, url_for, abort, session
+import json
+import urllib2
+
+global userToken
 
 config = {
 	"apiKey": "AIzaSyBuvPj-HdPlCbXfUzrdpDka0-Q0gvmkD9U",
@@ -18,14 +22,34 @@ app = Flask(__name__)
 def showSignUp():
     return render_template('signup.html')
 
-@app.route('/signUp', methods=['POST'])
+@app.route('/signUp', methods =['GET', 'POST'])
 def signUp():
-	email = request.form['inputEmail']
-	password = request.form['inputPassword']
-	print(email + password)
-	auth = firebase.auth()
-	auth.create_user_with_email_and_password(email, password)
-	return ('index.html')
+	print("hello")
+	error = None
+	if request.method == 'POST':
+		email = request.form['inputEmail']
+		password = request.form['inputPassword']
+		confPass = request.form['confirmPassword']
+
+		if email[-19:] != "college.harvard.edu":
+			error = "You must have a Harvard College email."
+		elif password != confPass:
+			error = "Your passwords do not match."
+		else:
+			signedUp = True
+			auth = firebase.auth()
+			try:
+				auth.create_user_with_email_and_password(email, "typewriter")
+			except:
+				signedUp = False
+				pass
+			if signedUp == False:
+				error = 'An account associated with that email has already been created.'
+			else:
+				auth.send_password_reset_email(email)
+				return redirect(url_for('login'))
+
+	return render_template('signup.html', error=error)
 	
 @app.route('/showQuestions', methods=['GET'])
 def showQuestions():
@@ -37,6 +61,28 @@ def showQuestions():
 		uid = question.key()
 		print(db.child("Questions/" + uid + "/title").get(user['idToken']).val())
 	return ('index.html')
+	
+
+@app.route('/logIn', methods=['GET','POST'])
+def login():
+	error = None
+	if request.method == 'POST':
+		auth = firebase.auth()
+		loggedIn = True
+		try:
+			user = auth.sign_in_with_email_and_password(request.form['inputEmail'], request.form['inputPassword'])
+		except:
+			loggedIn = False
+			pass
+			
+		#print(loggedIn)
+		if loggedIn == False:
+			error = 'Invalid credentials. Please try again.'
+		else:
+			userToken = auth.get_account_info(user['idToken'])
+			return render_template('index.html') #home
+	return render_template('login.html', error=error)
+
 
 @app.route('/showLogIn')
 def showSignIn():

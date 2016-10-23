@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Python Flask Bucket List App</title>
+    <title>Askii</title>
  
     
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,18 +20,22 @@
       </div>
 
       <div class="jumbotron">
-        <h1>HARVARD FORUM</h1>
-        <form class="form-signin">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <h1>LOG IN</h1>
+        <form class="form-signin" action="/logIn" method="POST">
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
 
-        <button id="btnLogin" class="btn btn-lg btn-primary btn-block" type="button"><style="color: white">Log in</style></button>
+          <button type="submit" id="btnLogin" class="btn btn-lg btn-primary btn-block" type="button"><style="color: white">Log in</style></button>
 
-        <p style="font-size:14px">Don't have an account? <a href="showSignUp">Sign up here.</a></p>
-      </form>
+          <p style="font-size:14px">Don't have an account? <a href="showSignUp">Sign up here.</a></p>
+        </form>
+
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
       </div>
  
        

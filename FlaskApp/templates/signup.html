@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Harvard Forum</title>
+    <title>Askii</title>
  
     
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
  
       <div class="jumbotron">
         <h1>Sign Up</h1>
-        <form class="form-signin" action="/signUp" method="POST">
+        <form class="form-signup" action="/signUp" method="POST">
           <label for="inputEmail" class="sr-only">Email address</label>
           <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
@@ -28,12 +28,15 @@
           <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
 
           <label for="confirmPassword" class="sr-only">Password</label>
-          <input type="password" name="inputPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
 
-          <input type="submit" button id="btnLogIn" class="btn btn-lg btn-primary btn-block" type="button" value="Sign Up"><style="color: white"></button>
+          <input type="submit" button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button" value="Sign Up"><style="color: white"></button>
 
           <p style="font-size:14px"> Already have an account? <a href="showLogIn">Log in here</a></p>
         </form>
+        {% if error %}
+          <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
       </div>
  
        
