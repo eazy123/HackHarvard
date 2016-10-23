@@ -3,7 +3,8 @@
 import pyrebase
 from flask import Flask, render_template, request, redirect, url_for, abort, session
 import json
-import urllib2
+import urllib2, urllib
+import requests
 
 global userToken
 
@@ -51,16 +52,23 @@ def signUp():
 
 	return render_template('signup.html', error=error)
 	
-@app.route('/showQuestions', methods=['GET'])
-def showQuestions():
+@app.route('/getQuestions', methods=['GET', 'POST'])
+def getQuestions():
+	print "hello world"
+	#if request.method == 'GET':
 	auth = firebase.auth()
 	user = auth.sign_in_with_email_and_password("test@gmail.com", "password")
 	db = firebase.database()
 	questions = db.child("Questions").order_by_key().get(user['idToken'])
+	titles = []
 	for question in questions.each():
 		uid = question.key()
-		print(db.child("Questions/" + uid + "/title").get(user['idToken']).val())
-	return ('index.html')
+		titles.append(db.child("Questions/" + uid + "/title").get(user['idToken']).val())
+	print titles
+	json.dumps(titles)
+	#r = requests.post('http://templates/forum.php', urllib.urlencode(questions))
+	#print r
+	return showQuestions()
 	
 
 @app.route('/logIn', methods=['GET','POST'])
@@ -80,7 +88,8 @@ def login():
 			error = 'Invalid credentials. Please try again.'
 		else:
 			userToken = auth.get_account_info(user['idToken'])
-			return render_template('index.html') #home
+			#return render_template('forum.php') #home
+			return getQuestions()
 	return render_template('login.html', error=error)
 
 
@@ -91,6 +100,10 @@ def showSignIn():
 @app.route('/showHome')
 def showHome():
 	return render_template('home.php')
+
+@app.route('/showQuestions')
+def showQuestions():
+	return render_template('forum.php')
 
 @app.route("/")
 def main():
