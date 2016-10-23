@@ -23,7 +23,8 @@
       <div class="jumbotron">
         <h1>Questions</h1>
         <!--<form class="table" action="/getQuestions" method="GET">-->
-
+        <?php echo "hello world" ?>
+        
         <?php 
         
         $titles = json_decode(exec('python ../app.py'), true);
@@ -71,6 +72,7 @@
 
         <!--</form>-->
       </div>
+    </div>
 </body>
  
 </html>

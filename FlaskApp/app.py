@@ -88,8 +88,8 @@ def login():
 			error = 'Invalid credentials. Please try again.'
 		else:
 			userToken = auth.get_account_info(user['idToken'])
-			#return render_template('forum.php') #home
-			return getQuestions()
+			return render_template('index.html') #home
+			#return getQuestions()
 	return render_template('login.html', error=error)
 
 
@@ -99,11 +99,11 @@ def showSignIn():
 
 @app.route('/showHome')
 def showHome():
-	return render_template('home.php')
+	return render_template('forum.php')
 
 @app.route('/showQuestions')
 def showQuestions():
-	return render_template('forum.php')
+	return redirect(url_for('showHome'))
 
 @app.route("/")
 def main():
