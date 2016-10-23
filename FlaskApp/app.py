@@ -27,6 +27,16 @@ def signUp():
 	auth.create_user_with_email_and_password(email, password)
 	return ('index.html')
 	
+@app.route('/showQuestions', methods=['GET'])
+def showQuestions():
+	auth = firebase.auth()
+	user = auth.sign_in_with_email_and_password("test@gmail.com", "password")
+	db = firebase.database()
+	questions = db.child("Questions").order_by_key().get(user['idToken'])
+	for question in questions.each():
+		uid = question.key()
+		print(db.child("Questions/" + uid + "/title").get(user['idToken']).val())
+	return ('index.html')
 
 @app.route('/showLogIn')
 def showSignIn():

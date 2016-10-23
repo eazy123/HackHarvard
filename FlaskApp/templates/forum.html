@@ -1,0 +1,46 @@
+<CTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Harvard Forum</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!--<link href="../static/index.css" rel="stylesheet">-->
+ 
+</head>
+ 
+<body>
+ 
+ <div class="container">
+      <div class="header">
+          <a href="/"><img src="../static/logo.png" alt="Askii" style="width:100px;height:50px;"></a>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Sign Up</h1>
+        <form class="table" action="/showQuestions" method="GET">
+          <table>
+            <thead>
+                <th>Question</th>
+                <th>Number of Responses</th>
+        </thead>
+
+        <tbody>
+            {% for line in x %}
+            <tr>
+            <td>{{ x.date|tojson|safe }}</td>
+            <td>{{ x.users }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </form>
+      </div>
+</body>
+ 
+</html>
+
